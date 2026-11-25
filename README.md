@@ -23,5 +23,9 @@ Java 17 and Maven 3.9+.
 Example create request:
 `curl -X POST http://localhost:8080/api/employees -H "Content-Type: application/json" -d '{"name":"Asha Patil","department":"IT","email":"asha@example.test"}'`
 
+## Automated test coverage
+
+The Spring Boot integration tests use MockMvc and an in-memory H2 database to verify employee creation, listing, retrieval, update, deletion, not-found responses, and required-field validation. Run with `mvn test`.
+
 ## Scope
 A CRUD learning project. Authentication, role-based access, advanced validation, and production database deployment are not included.
