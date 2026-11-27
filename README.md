@@ -1,5 +1,7 @@
 # Employee Management System
 
+[![ci](https://github.com/swarajsalve042/Employee-Management-System/actions/workflows/ci.yml/badge.svg)](https://github.com/swarajsalve042/Employee-Management-System/actions/workflows/ci.yml)
+
 [![CI](https://github.com/swarajsalve042/Employee-Management-System/actions/workflows/ci.yml/badge.svg)](https://github.com/swarajsalve042/Employee-Management-System/actions/workflows/ci.yml)
 
 Java 17 and Spring Boot REST API for employee records.
@@ -29,3 +31,9 @@ The Spring Boot integration tests use MockMvc and an in-memory H2 database to ve
 
 ## Scope
 A CRUD learning project. Authentication, role-based access, advanced validation, and production database deployment are not included.
+
+## Latest automated verification (25 November 2026)
+
+- [Maven build and integration tests — successful GitHub Actions run](https://github.com/swarajsalve042/Employee-Management-System/actions/runs/45572942390)
+
+These links document automated checks only; they do not imply production deployment or manual end-user acceptance testing.
