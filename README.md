@@ -1,39 +1,64 @@
 # Employee Management System
 
-[![ci](https://github.com/swarajsalve042/Employee-Management-System/actions/workflows/ci.yml/badge.svg)](https://github.com/swarajsalve042/Employee-Management-System/actions/workflows/ci.yml)
-
 [![CI](https://github.com/swarajsalve042/Employee-Management-System/actions/workflows/ci.yml/badge.svg)](https://github.com/swarajsalve042/Employee-Management-System/actions/workflows/ci.yml)
 
-Java 17 and Spring Boot REST API for employee records.
+A Java 17 and Spring Boot REST API for managing employee records with Spring Data JPA and an H2 in-memory database.
 
 ## Features
-- Create, list and retrieve employees.
-- Update employee details.
-- Delete employees by ID.
-- Spring Data JPA and H2 in-memory database.
-- REST endpoints under `/api/employees`.
+
+- Create, list and retrieve employee records.
+- Update employee details and delete records by ID.
+- Validate employee names (1–100 characters), email addresses and department length (up to 80 characters).
+- Normalize names and departments by trimming whitespace; store email addresses in lowercase.
+- Return HTTP 400 for invalid input and HTTP 404 for missing employee records.
 
 ## Requirements
-Java 17 and Maven 3.9+.
 
-## Run
-`mvn spring-boot:run`
+- Java 17
+- Maven 3.9+
 
-## Test
-`mvn test`
+## Run locally
 
-Example create request:
-`curl -X POST http://localhost:8080/api/employees -H "Content-Type: application/json" -d '{"name":"Asha Patil","department":"IT","email":"asha@example.test"}'`
+```bash
+mvn spring-boot:run
+```
 
-## Automated test coverage
+Create an employee:
 
-The Spring Boot integration tests use MockMvc and an in-memory H2 database to verify employee creation, listing, retrieval, update, deletion, not-found responses, and required-field validation. Run with `mvn test`.
+```bash
+curl -X POST http://localhost:8080/api/employees \
+  -H "Content-Type: application/json" \
+  -d '{"name":"Asha Patil","department":"IT","email":"asha@example.test"}'
+```
 
-## Scope
-A CRUD learning project. Authentication, role-based access, advanced validation, and production database deployment are not included.
+Update an employee (replace `1` with its ID):
 
-## Latest automated verification (25 November 2026)
+```bash
+curl -X PUT http://localhost:8080/api/employees/1 \
+  -H "Content-Type: application/json" \
+  -d '{"name":"Asha Patil","department":"Platform","email":"asha@example.test"}'
+```
 
-- [Maven build and integration tests — successful GitHub Actions run](https://github.com/swarajsalve042/Employee-Management-System/actions/runs/45572942390)
+## API endpoints
 
-These links document automated checks only; they do not imply production deployment or manual end-user acceptance testing.
+| Method | Endpoint | Purpose |
+|---|---|---|
+| GET | `/api/employees` | List employees |
+| GET | `/api/employees/{id}` | Retrieve one employee |
+| POST | `/api/employees` | Create an employee |
+| PUT | `/api/employees/{id}` | Update an employee |
+| DELETE | `/api/employees/{id}` | Delete an employee |
+
+## Tests
+
+Run the integration test suite:
+
+```bash
+mvn --batch-mode test
+```
+
+Tests use Spring Boot, MockMvc and H2 to cover create, list, retrieve, update and delete operations, required fields, email validation, normalization, invalid updates and missing records. GitHub Actions runs Maven tests on pushes and pull requests to `main`.
+
+## Scope and limitations
+
+This is an employee CRUD learning project. It does not currently implement login, authentication, role-based authorization, a frontend, audit logging or production database deployment. H2 is in-memory, so records are not retained after application restart. Do not use this demo to store real employee personal data.
